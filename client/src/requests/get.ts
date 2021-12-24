@@ -4,7 +4,8 @@ import r from '../lib/api';
 
 const getTopSubmissions = async (sub: string, time: Timespan) => {
   try {
-    return await r.getSubreddit(sub).getTop({ time });
+    const get = await r.getSubreddit(sub).getTop({ time });
+    return get.fetchMore({ amount: 25 });
   } catch {
     return [];
   }

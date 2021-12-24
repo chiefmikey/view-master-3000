@@ -3,9 +3,16 @@ import { h } from 'dom-chef';
 import getTopSubmissions from '../requests/get';
 
 const App = async () => {
-  const response = await getTopSubmissions('cats', 'all');
+  const response = await getTopSubmissions('cats', 'day');
   const app = document.querySelector('.app');
   const elements = response.map((post) => {
+    if (post.post_hint === 'image') {
+      return (
+        <div className="element" key={post.name}>
+          <img alt="Content Post" src={post.url} />
+        </div>
+      );
+    }
     if (post.media?.oembed?.html) {
       return (
         <div
@@ -22,7 +29,7 @@ const App = async () => {
         />
       );
     }
-    return <div key={post.name}>Not Found</div>;
+    return <div key={post.name} />;
   });
 
   for (const element of elements) {
