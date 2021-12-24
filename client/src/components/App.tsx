@@ -1,9 +1,14 @@
 import { h } from 'dom-chef';
+import { Timespan } from 'snoowrap/dist/objects/Subreddit';
 
 import getTopSubmissions from '../requests/get';
 
 const App = async () => {
-  const response = await getTopSubmissions('cats', 'day');
+  const windowOwner = window.location.pathname.split('/').slice(1, 3);
+  const response =
+    windowOwner.length > 1
+      ? await getTopSubmissions(windowOwner[0], windowOwner[1] as Timespan)
+      : [];
   const app = document.querySelector('.app');
   const elements = response.map((post) => {
     if (post.post_hint === 'image') {
@@ -32,8 +37,12 @@ const App = async () => {
     return <div key={post.name} />;
   });
 
-  for (const element of elements) {
-    app?.append(element);
+  if (elements.length > 0) {
+    for (const element of elements) {
+      app?.append(element);
+    }
+  } else {
+    app?.append(<div>No content found</div>);
   }
 };
 

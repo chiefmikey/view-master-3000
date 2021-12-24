@@ -7,7 +7,7 @@ const port = process.env.PORT || 3000;
 const app = new Koa();
 
 app
-  .use(serve(path.join(path.resolve(), 'client/public')))
+  .use(serve(path.join(path.resolve(), 'docs')))
   .listen(port, () => console.log('Koa is listening on port', port));
 
 export default app;

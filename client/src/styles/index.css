@@ -1,5 +1,5 @@
 :root {
-  --background: #000;
+  --background: #fafafa;
 }
 
 img {
@@ -10,9 +10,13 @@ img {
 
 .app {
   display: flex;
+  width: 100vw;
+  height: 100vh;
   overflow: scroll;
   flex-direction: row;
   background-color: var(--background);
+  justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
 }
 
