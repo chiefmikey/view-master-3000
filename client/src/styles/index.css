@@ -1,0 +1,14 @@
+:root {
+  --background: #000;
+}
+
+.app {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: var(--background);
+}
+
+.element {
+  height: 25vh;
+}
