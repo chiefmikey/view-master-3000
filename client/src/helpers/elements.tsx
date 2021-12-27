@@ -17,7 +17,8 @@ const elements = (response: Listing<Submission> | never[]) =>
           key={post.name}
           dangerouslySetInnerHTML={{
             __html: post.media?.oembed?.html
-              .replace('style="position:absolute;"', '')
+              .replace('src"', 'data-src')
+              .replace('style="position:absolute;"', 'loading="lazy"')
               .replace('width="600"', 'width="100%"')
               .replace('height="400"', 'height="auto"')
               .replace('height="1067"', 'height="auto"')
