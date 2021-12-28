@@ -27,7 +27,6 @@ const elements = (response: Listing<Submission> | never[]) =>
         />
       );
     }
-    return <div key={post.name} />;
   });
 
 export default elements;
