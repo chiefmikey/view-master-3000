@@ -13,6 +13,8 @@ img {
   width: 100vw;
   height: 100vh;
   overflow: scroll;
+  font-family: 'Roboto', sans-serif;
+  color: #fff;
   flex-direction: row;
   background-color: var(--background);
   justify-content: center;
