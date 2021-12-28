@@ -4,7 +4,7 @@ import r from '../lib/api';
 
 const getTopSubmissions = async (sub: string, time: Timespan) => {
   try {
-    return await r.getSubreddit(sub).getTop({ time });
+    return await r.getSubreddit(sub).getTop({ time, limit: 48 });
   } catch {
     return [];
   }
