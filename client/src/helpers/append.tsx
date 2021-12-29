@@ -2,8 +2,6 @@ import { h } from 'dom-chef';
 
 import getMore from '../requests/getMore';
 
-import remove from './remove';
-
 let activeListener = false;
 let response;
 let remaining;

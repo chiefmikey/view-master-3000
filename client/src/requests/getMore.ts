@@ -1,6 +1,7 @@
 import { Listing, Submission } from 'snoowrap';
 
 import elements from '../helpers/elements';
+import remove from '../helpers/remove';
 
 const getMore = async (
   appendElements: (
@@ -13,8 +14,10 @@ const getMore = async (
   app: Element | undefined,
 ) => {
   if (app) {
-    remove(app);
     if (remaining.length > 0) {
+      if (remaining.length > 3) {
+        remove(app);
+      }
       appendElements(remaining, response, app);
     } else {
       const additionalResponse = await response.fetchMore({
@@ -30,7 +33,9 @@ const getMore = async (
           return false;
         },
       );
-
+      if (additionalContent.length > 3) {
+        remove(app);
+      }
       appendElements(additionalContent, additionalResponse, app);
     }
   }
