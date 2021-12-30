@@ -7,7 +7,7 @@ const DIST_DIR = path.join(path.resolve(), '/docs/public/dist');
 const css = ['style-loader', 'css-loader'];
 
 const config: Configuration = {
-  entry: `${SRC_DIR}/index.tsx`,
+  entry: `${SRC_DIR}/index.ts`,
   output: {
     filename: 'bundle.js',
     path: DIST_DIR,

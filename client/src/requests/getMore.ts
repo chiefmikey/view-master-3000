@@ -1,43 +1,66 @@
 import { Listing, Submission } from 'snoowrap';
 
-import elements from '../helpers/elements';
+import continueRun from '../helpers/continueRun';
+import filter from '../helpers/filter';
 import remove from '../helpers/remove';
+
+let additionalContent;
+let additionalResponse;
+let response;
+let remaining;
 
 const getMore = async (
   appendElements: (
     content: (Element | undefined)[],
-    response,
+    responseInput,
+    windowOwner: string,
     app: Element,
+    willContinue: boolean,
   ) => (Element | undefined)[],
-  response: Listing<Submission> | never[],
-  remaining: (Element | undefined)[],
+  inputResponse: Listing<Submission> | never[],
+  inputRemaining: (Element | undefined)[],
+  windowOwner: string,
   app: Element | undefined,
+  willContinue: boolean,
 ) => {
-  if (app) {
-    if (remaining.length > 0) {
-      if (remaining.length > 3) {
+  try {
+    response = inputResponse;
+    remaining = inputRemaining;
+    if (app) {
+      if (remaining.length > 0) {
+        if (remaining.length < 3 && willContinue) {
+          response = await continueRun(windowOwner);
+          remaining = [...remaining, ...filter(response)];
+        }
         remove(app);
-      }
-      appendElements(remaining, response, app);
-    } else {
-      const additionalResponse = await response.fetchMore({
-        amount: 128,
-        append: false,
-      });
+        appendElements(remaining, response, windowOwner, app, willContinue);
+      } else {
+        additionalResponse = await response.fetchMore({
+          amount: 128,
+          append: false,
+        });
 
-      const additionalContent = elements(additionalResponse).filter(
-        (element) => {
-          if (element) {
-            return true;
-          }
-          return false;
-        },
-      );
-      if (additionalContent.length > 3) {
-        remove(app);
+        additionalContent = filter(additionalResponse);
+        if (additionalContent.length > 3) {
+          remove(app);
+        } else if (willContinue) {
+          additionalResponse = await continueRun(windowOwner);
+          additionalContent = [
+            ...additionalContent,
+            ...filter(additionalResponse),
+          ];
+        }
+        appendElements(
+          additionalContent,
+          additionalResponse,
+          windowOwner,
+          app,
+          willContinue,
+        );
       }
-      appendElements(additionalContent, additionalResponse, app);
     }
+  } catch (error) {
+    console.log(error);
   }
 };
 
