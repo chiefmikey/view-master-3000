@@ -1,3 +1,4 @@
+import { h } from 'dom-chef';
 import { Timespan } from 'snoowrap/dist/objects/Subreddit';
 
 import appendElements from '../helpers/append';
@@ -32,8 +33,12 @@ const App = async () => {
     }
   }
   const content = filter(response);
-  if (app) {
-    appendElements(content, response, windowOwner, app, willContinue);
+  if (content.length > 0) {
+    if (app) {
+      appendElements(content, response, windowOwner, app, willContinue);
+    }
+  } else {
+    app?.append(<div className="error">Not Found</div>);
   }
 };
 
