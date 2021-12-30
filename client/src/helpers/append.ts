@@ -1,19 +1,18 @@
-import { h } from 'dom-chef';
-
 import getMore from '../requests/getMore';
 
 let activeListener = false;
-let response;
-let remaining;
+let response: RedditResponseType;
+let remaining: ContentType;
 
 const listener = (
-  appendElements,
-  windowOwner: string,
-  app,
+  appendElements: AppendType,
+  windowOwner: string[],
+  app: Element,
   willContinue: boolean,
 ) => {
   if (app) {
     activeListener = true;
+    // eslint-disable-next-line @typescript-eslint/no-misused-promises
     app.addEventListener('scroll', async () => {
       if (app.scrollTop + app.clientHeight >= app.scrollHeight) {
         await getMore(
@@ -29,12 +28,12 @@ const listener = (
   }
 };
 
-const appendElements = async (
-  content: (Element | undefined)[],
+const appendElements: AppendType = (
+  content,
   responseInput,
-  windowOwner: string,
-  app: Element,
-  willContinue: boolean,
+  windowOwner,
+  app,
+  willContinue,
 ) => {
   if (content && content.length > 0) {
     response = responseInput;
@@ -42,17 +41,14 @@ const appendElements = async (
 
     for (let index = 0; index < domIndex; index += 1) {
       if (content[index]) {
-        app.append(content[index]);
+        app.append(content[index] as Element);
       }
     }
     remaining = content.slice(domIndex);
 
-    // autoplay video tags
     for (const element of document.querySelectorAll('video')) {
-      const playVideo = async () => {
-        await element.play();
-      };
-      playVideo();
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      element.play();
     }
 
     if (!activeListener) {

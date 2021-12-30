@@ -4,22 +4,16 @@ import continueRun from '../helpers/continueRun';
 import filter from '../helpers/filter';
 import remove from '../helpers/remove';
 
-let additionalContent;
-let additionalResponse;
-let response;
-let remaining;
+let additionalContent: ContentType;
+let additionalResponse: RedditResponseType;
+let remaining: ContentType;
+let response: RedditResponseType;
 
 const getMore = async (
-  appendElements: (
-    content: (Element | undefined)[],
-    responseInput,
-    windowOwner: string,
-    app: Element,
-    willContinue: boolean,
-  ) => (Element | undefined)[],
-  inputResponse: Listing<Submission> | never[],
-  inputRemaining: (Element | undefined)[],
-  windowOwner: string,
+  appendElements: AppendType,
+  inputResponse: RedditResponseType,
+  inputRemaining: ContentType,
+  windowOwner: string[],
   app: Element | undefined,
   willContinue: boolean,
 ) => {
@@ -35,7 +29,8 @@ const getMore = async (
         remove(app);
         appendElements(remaining, response, windowOwner, app, willContinue);
       } else {
-        additionalResponse = await response.fetchMore({
+        // eslint-disable-next-line @typescript-eslint/await-thenable
+        additionalResponse = await (response as Listing<Submission>).fetchMore({
           amount: 128,
           append: false,
         });

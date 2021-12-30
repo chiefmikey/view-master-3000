@@ -14,10 +14,10 @@ loading?.addEventListener('click', () => {
   loading?.classList.add('hidden');
 });
 let willContinue = false;
+let response: RedditResponseType;
 
 const App = async () => {
   const windowOwner = window.location.pathname.split('/').slice(1);
-  let response;
   if (windowOwner[0] === 'u') {
     response = await getUserSubmissions(windowOwner[1]);
   } else if (windowOwner[0] === 'r') {

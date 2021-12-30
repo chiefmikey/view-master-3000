@@ -1,11 +1,11 @@
+import { Timespan } from 'snoowrap/dist/objects/Subreddit';
+
 import {
   getHotSubmissions,
   getRisingSubmissions,
   getControversialSubmissions,
   getTopSubmissions,
 } from '../requests/getSubmissions';
-
-import filter from './filter';
 
 const responseFunctions = [
   getHotSubmissions,
@@ -17,9 +17,12 @@ let responseIndex = 0;
 const tops = ['hour', 'day', 'week', 'month', 'year', 'all'];
 let topIndex = 0;
 
-const continueRun = async (windowOwner) => {
+const continueRun = async (windowOwner: string[]) => {
   if (responseIndex === responseFunctions.length) {
-    response = await getTopSubmissions(windowOwner[1], tops[topIndex]);
+    response = await getTopSubmissions(
+      windowOwner[1],
+      tops[topIndex] as Timespan,
+    );
     if (topIndex === tops.length - 1) {
     } else {
       topIndex += 1;

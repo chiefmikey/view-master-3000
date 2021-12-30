@@ -1,7 +1,7 @@
 :root {
-  --background: #000;
+  --bg-color: #000;
 
-  font-family: 'Roboto', sans-serif;
+  font-family: Roboto, sans-serif;
   font-size: $h4-size;
   color: #fff;
 }
@@ -23,7 +23,7 @@ video {
   height: 100vh;
   overflow: scroll;
   flex-direction: row;
-  background-color: var(--background);
+  background-color: var(--bg-color);
   justify-content: flex-start;
   align-items: flex-start;
   flex-wrap: wrap;
@@ -43,7 +43,7 @@ video {
   display: flex;
   width: 100vw;
   height: 100vh;
-  background-color: var(--background);
+  background-color: var(--bg-color);
   justify-content: center;
   align-items: center;
 }
