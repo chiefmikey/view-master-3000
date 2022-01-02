@@ -17,7 +17,7 @@ const elements = (response: Listing<Submission> | never[]) =>
             target="_blank"
             rel="noreferrer"
           >
-            <img alt="Content Post" src={post.url} />
+            <img alt="Content Post" src={post.url} loading="lazy" />
           </a>
         );
       }
@@ -72,7 +72,11 @@ const elements = (response: Listing<Submission> | never[]) =>
               target="_blank"
               rel="noreferrer"
             >
-              <img alt="Content Post" src={post.preview.images[0].source.url} />
+              <img
+                alt="Content Post"
+                src={post.preview.images[0].source.url}
+                loading="lazy"
+              />
             </a>
           );
         }
