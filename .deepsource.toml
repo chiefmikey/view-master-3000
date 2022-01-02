@@ -3,7 +3,8 @@ exclude_patterns = [
   "dist",
   "bundle.js",
   "build.js",
-  "app.ts"
+  "app.ts",
+  "webpack.config.js"
 ]
 
 [[analyzers]]
