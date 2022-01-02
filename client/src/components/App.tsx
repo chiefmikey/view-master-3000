@@ -28,44 +28,60 @@ const App = async () => {
   const subName = windowOwner[1];
   const filterType = windowOwner[2];
   const timespan = windowOwner[3];
+  let tagType = '';
 
   if (subUser === 'u') {
+    tagType = windowOwner[2];
     response = await getUserSubmissions(subName);
   } else if (subUser === 'r') {
     switch (filterType) {
       case 'hot': {
+        tagType = windowOwner[3];
         response = await getHotSubmissions(subName);
 
         break;
       }
       case 'rising': {
+        tagType = windowOwner[3];
         response = await getRisingSubmissions(subName);
 
         break;
       }
       case 'controversial': {
+        tagType = windowOwner[3];
         response = await getControversialSubmissions(subName);
 
         break;
       }
       case 'new': {
+        tagType = windowOwner[3];
         response = await getNewSubmissions(subName);
 
         break;
       }
       case 'top': {
+        tagType = windowOwner[4];
         const time = timespan || 'all';
         response = await getTopSubmissions(subName, time as Timespan);
 
         break;
       }
       default: {
+        tagType = windowOwner[2];
         response = await getNewSubmissions(subName);
         willContinue = true;
       }
     }
   }
-  const content = filter(response);
+  if (tagType) {
+    if (tagType.toLowerCase() === 'video') {
+      tagType = 'iframe';
+    }
+    if (tagType.toLowerCase() === 'image') {
+      tagType = 'img';
+    }
+  }
+  const content = filter(response, tagType);
   if (content.length > 0) {
     if (app) {
       appendElements(content, response, windowOwner, app, willContinue);
