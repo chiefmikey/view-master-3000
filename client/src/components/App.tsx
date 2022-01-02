@@ -13,9 +13,11 @@ import {
 } from '../requests/getSubmissions';
 
 const app = document.querySelector('.app');
-const loading = document.querySelector('.loading');
-loading?.addEventListener('click', () => {
-  loading?.classList.add('hidden');
+app?.addEventListener('click', () => {
+  for (const element of document.querySelectorAll('video')) {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    element.play();
+  }
 });
 let willContinue = false;
 let response: RedditResponseType;
