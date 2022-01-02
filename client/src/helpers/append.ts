@@ -46,11 +46,6 @@ const appendElements: AppendType = (
     }
     remaining = content.slice(domIndex);
 
-    for (const element of document.querySelectorAll('video')) {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      element.play();
-    }
-
     if (!activeListener) {
       listener(appendElements, windowOwner, app, willContinue);
     }
