@@ -1,4 +1,4 @@
-const remove = (app: Element) => {
+const remove = (app: Element): void => {
   const children = [];
   for (let index = 0; index < 4; index += 1) {
     children.push(app.children[index]);

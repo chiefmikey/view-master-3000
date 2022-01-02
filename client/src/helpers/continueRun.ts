@@ -12,7 +12,7 @@ const responseFunctions = [
   getRisingSubmissions,
   getControversialSubmissions,
 ];
-let response;
+let response: RedditResponseType = [];
 let responseIndex = 0;
 const tops = ['hour', 'day', 'week', 'month', 'year', 'all'];
 let topIndex = 0;

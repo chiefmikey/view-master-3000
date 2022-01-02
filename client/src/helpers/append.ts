@@ -1,14 +1,15 @@
 import getMore from '../requests/getMore';
 
 let activeListener = false;
-let response: RedditResponseType;
-let remaining: ContentType;
+let response: RedditResponseType = [];
+let remaining: ContentType = [];
 
 const listener = (
   appendElements: AppendType,
   windowOwner: string[],
   app: Element,
   willContinue: boolean,
+  tagType: string,
 ) => {
   if (app) {
     activeListener = true;
@@ -22,6 +23,7 @@ const listener = (
           windowOwner,
           app,
           willContinue,
+          tagType,
         );
       }
     });
@@ -34,6 +36,7 @@ const appendElements: AppendType = (
   windowOwner,
   app,
   willContinue,
+  tagType,
 ) => {
   if (content && content.length > 0) {
     response = responseInput;
@@ -47,7 +50,7 @@ const appendElements: AppendType = (
     remaining = content.slice(domIndex);
 
     if (!activeListener) {
-      listener(appendElements, windowOwner, app, willContinue);
+      listener(appendElements, windowOwner, app, willContinue, tagType);
     }
   }
 };

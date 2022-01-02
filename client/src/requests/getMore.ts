@@ -4,10 +4,10 @@ import continueRun from '../helpers/continueRun';
 import filter from '../helpers/filter';
 import remove from '../helpers/remove';
 
-let additionalContent: ContentType;
-let additionalResponse: RedditResponseType;
-let remaining: ContentType;
-let response: RedditResponseType;
+let additionalContent: ContentType = [];
+let additionalResponse: RedditResponseType = [];
+let remaining: ContentType = [];
+let response: RedditResponseType = [];
 
 const getMore = async (
   appendElements: AppendType,
@@ -16,6 +16,7 @@ const getMore = async (
   windowOwner: string[],
   app: Element | undefined,
   willContinue: boolean,
+  tagType: string,
 ) => {
   try {
     response = inputResponse;
@@ -24,10 +25,17 @@ const getMore = async (
       if (remaining.length > 0) {
         if (remaining.length < 3 && willContinue) {
           response = await continueRun(windowOwner);
-          remaining = [...remaining, ...filter(response)];
+          remaining = [...remaining, ...filter(response, tagType)];
         }
         remove(app);
-        appendElements(remaining, response, windowOwner, app, willContinue);
+        appendElements(
+          remaining,
+          response,
+          windowOwner,
+          app,
+          willContinue,
+          tagType,
+        );
       } else {
         // eslint-disable-next-line @typescript-eslint/await-thenable
         additionalResponse = await (response as Listing<Submission>).fetchMore({
@@ -35,14 +43,14 @@ const getMore = async (
           append: false,
         });
 
-        additionalContent = filter(additionalResponse);
+        additionalContent = filter(additionalResponse, tagType);
         if (additionalContent.length > 3) {
           remove(app);
         } else if (willContinue) {
           additionalResponse = await continueRun(windowOwner);
           additionalContent = [
             ...additionalContent,
-            ...filter(additionalResponse),
+            ...filter(additionalResponse, tagType),
           ];
         }
         appendElements(
@@ -51,6 +59,7 @@ const getMore = async (
           windowOwner,
           app,
           willContinue,
+          tagType,
         );
       }
     }

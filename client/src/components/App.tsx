@@ -20,7 +20,7 @@ app?.addEventListener('click', () => {
   }
 });
 let willContinue = false;
-let response: RedditResponseType;
+let response: RedditResponseType = [];
 
 const App = async () => {
   const windowOwner = window.location.pathname.split('/').slice(1);
@@ -84,7 +84,14 @@ const App = async () => {
   const content = filter(response, tagType);
   if (content.length > 0) {
     if (app) {
-      appendElements(content, response, windowOwner, app, willContinue);
+      appendElements(
+        content,
+        response,
+        windowOwner,
+        app,
+        willContinue,
+        tagType,
+      );
     }
   } else {
     app?.append(<div className="error">Not Found</div>);
