@@ -57,12 +57,6 @@ const config: Configuration = {
   },
   resolve: {
     extensions: ['*', '.ts', '.tsx', '.js', '.jsx', '.vue', '.json', '...'],
-    alias: {
-      react: 'preact/compat',
-      'react-dom/test-utils': 'preact/test-utils',
-      'react-dom': 'preact/compat',
-      'react/jsx-runtime': 'preact/jsx-runtime',
-    },
   },
   experiments: {
     topLevelAwait: true,
