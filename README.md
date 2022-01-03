@@ -20,6 +20,8 @@ viewmaster3000.com/r/{subreddit}/{filter?}/{media?}
 viewmaster3000.com/r/{subreddit}/top/{time?}/{media?}
 ```
 
+### Options
+
 <table>
   <thead>
     <tr>
