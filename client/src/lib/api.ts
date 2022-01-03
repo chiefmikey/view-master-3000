@@ -1,14 +1,15 @@
+import dotenv from 'dotenv';
 import Snoowrap from 'snoowrap';
 
-import token from '../../../token';
+dotenv.config();
 
-const r = token
+const r = process.env
   ? new Snoowrap({
-      userAgent: token.userAgent,
-      clientId: token.clientId,
-      clientSecret: token.clientSecret,
-      username: token.username,
-      password: token.password,
+      userAgent: process.env.userAgent || '',
+      clientId: process.env.clientId,
+      clientSecret: process.env.clientSecret,
+      username: process.env.username,
+      password: process.env.password,
     })
   : new Snoowrap({
       userAgent: 'View-Master 3000',
