@@ -28,27 +28,21 @@ viewmaster3000.com/r/{subreddit}/top/{time?}/{media?}
       <th align="left">Values</th>
     </tr>
   </thead>
-   <tbody>
+  <tbody>
     <tr>
-      <td valign="top">
-       filter
-      </td>
+      <td valign="top">filter</td>
       <td valign="top">top</td>
       <td valign="top">hot, new, rising, controversial, top</td>
     </tr>
     <tr>
-  <td valign="top">
-  time
-  </td>
-  <td valign="top">all</td>
-  <td valign="top">hour, day, week, month, year, all</td>
-</tr>
+      <td valign="top">time</td>
+      <td valign="top">all</td>
+      <td valign="top">hour, day, week, month, year, all</td>
+    </tr>
     <tr>
-      <td valign="top">
-        media
-      </td>
+      <td valign="top">media</td>
       <td valign="top">all</td>
       <td valign="top">all, photo, video</td>
     </tr>
-</tbody>
+  </tbody>
 </table>
