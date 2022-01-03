@@ -46,3 +46,4 @@
 *.war           binary
 
 docs/**         linguist-documentation=false
+*.md            linguist-documentation=false
