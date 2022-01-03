@@ -46,4 +46,4 @@
 *.war           binary
 
 docs/**         linguist-documentation=false
-*.md            linguist-documentation=false
+README.md       linguist-documentation=false
