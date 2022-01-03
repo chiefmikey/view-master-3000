@@ -1,7 +1,9 @@
 import dotenv from 'dotenv';
 import Snoowrap from 'snoowrap';
 
-dotenv.config();
+if (process.env.NODE_ENV !== 'production') {
+  dotenv.config();
+}
 
 const r = process.env
   ? new Snoowrap({
