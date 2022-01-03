@@ -14,7 +14,7 @@ viewmaster3000.com/u/{username}/{media?}
 viewmaster3000.com/r/{subreddit}/{filter?}/{media?}
 ```
 
-### Top
+### Top Posts
 
 ```url
 viewmaster3000.com/r/{subreddit}/top/{time?}/{media?}
