@@ -11,10 +11,8 @@ const r = token
       password: token.password,
     })
   : new Snoowrap({
-      userAgent: 'put your user-agent string here',
-      clientId: 'put your client id here',
-      clientSecret: 'put your client secret here',
-      refreshToken: 'put your refresh token here',
+      userAgent: 'View-Master 3000',
+      accessToken: '',
     });
 
 export default r;
