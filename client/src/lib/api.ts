@@ -1,21 +1,23 @@
-import dotenv from 'dotenv';
 import Snoowrap from 'snoowrap';
 
-if (process.env.NODE_ENV !== 'production') {
-  dotenv.config();
-}
+import token from '../../../token';
 
-const r = process.env
-  ? new Snoowrap({
-      userAgent: process.env.userAgent || '',
-      clientId: process.env.clientId,
-      clientSecret: process.env.clientSecret,
-      username: process.env.username,
-      password: process.env.password,
-    })
-  : new Snoowrap({
-      userAgent: 'View-Master 3000',
-      accessToken: '',
-    });
+// if (process.env.NODE_ENV !== 'production') {
+//   await import('../../../token');
+// }
+
+const r =
+  process.env.NODE_ENV !== 'production'
+    ? await new Snoowrap({
+        userAgent: token.userAgent || '',
+        clientId: token.clientId,
+        clientSecret: token.clientSecret,
+        username: token.username,
+        password: token.password,
+      })
+    : new Snoowrap({
+        userAgent: 'View-Master 3000',
+        accessToken: '',
+      });
 
 export default r;
