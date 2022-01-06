@@ -11,7 +11,9 @@
     "tsc": "tsc"
   },
   "dependencies": {
+    "@aws-sdk/client-secrets-manager": "^3.45.0",
     "airbnb-browser-shims": "^3.3.0",
+    "axios": "^0.24.0",
     "dom-chef": "^5.0.0",
     "koa": "^2.13.4",
     "koa-static": "^5.0.0",
