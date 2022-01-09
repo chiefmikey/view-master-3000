@@ -1,16 +1,8 @@
+import axios from 'axios';
 import { h } from 'dom-chef';
-import { Timespan } from 'snoowrap/dist/objects/Subreddit';
 
 import appendElements from '../helpers/append';
 import filter from '../helpers/filter';
-import {
-  getNewSubmissions,
-  getUserSubmissions,
-  getTopSubmissions,
-  getHotSubmissions,
-  getRisingSubmissions,
-  getControversialSubmissions,
-} from '../requests/getSubmissions';
 
 const app = document.querySelector('.app');
 app?.addEventListener('click', () => {
@@ -32,43 +24,75 @@ const App = async () => {
 
   if (subUser === 'u') {
     tagType = windowOwner[2];
-    response = await getUserSubmissions(subName);
+    response = await axios.get('https://api.5105015032.com/auth/vm3000/user', {
+      params: { subName },
+    });
   } else if (subUser === 'r') {
     switch (filterType) {
       case 'hot': {
         tagType = windowOwner[3];
-        response = await getHotSubmissions(subName);
+        response = await axios.get(
+          'https://api.5105015032.com/auth/vm3000/hot',
+          {
+            params: { subName },
+          },
+        );
 
         break;
       }
       case 'rising': {
         tagType = windowOwner[3];
-        response = await getRisingSubmissions(subName);
+        response = await axios.get(
+          'https://api.5105015032.com/auth/vm3000/rising',
+          {
+            params: { subName },
+          },
+        );
 
         break;
       }
       case 'controversial': {
         tagType = windowOwner[3];
-        response = await getControversialSubmissions(subName);
+        response = await axios.get(
+          'https://api.5105015032.com/auth/vm3000/controversial',
+          {
+            params: { subName },
+          },
+        );
 
         break;
       }
       case 'new': {
         tagType = windowOwner[3];
-        response = await getNewSubmissions(subName);
+        response = await axios.get(
+          'https://api.5105015032.com/auth/vm3000/new',
+          {
+            params: { subName },
+          },
+        );
 
         break;
       }
       case 'top': {
         tagType = windowOwner[4];
         const time = timespan || 'all';
-        response = await getTopSubmissions(subName, time as Timespan);
+        response = await axios.get(
+          'https://api.5105015032.com/auth/vm3000/top',
+          {
+            params: { subName, time },
+          },
+        );
 
         break;
       }
       default: {
         tagType = windowOwner[2];
-        response = await getNewSubmissions(subName);
+        response = await axios.get(
+          'https://api.5105015032.com/auth/vm3000/new',
+          {
+            params: { subName },
+          },
+        );
         willContinue = true;
       }
     }
