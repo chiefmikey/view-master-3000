@@ -12,7 +12,7 @@ app?.addEventListener('click', () => {
   }
 });
 let willContinue = false;
-let response: RedditResponseType = [];
+let response = { data: [] };
 
 const App = async () => {
   const windowOwner = window.location.pathname.split('/').slice(1);
@@ -105,12 +105,13 @@ const App = async () => {
       tagType = 'img';
     }
   }
-  const content = filter(response, tagType);
+  console.log(response);
+  const content = filter(response.data, tagType);
   if (content.length > 0) {
     if (app) {
       appendElements(
         content,
-        response,
+        response.data,
         windowOwner,
         app,
         willContinue,
