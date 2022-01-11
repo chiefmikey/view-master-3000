@@ -3,9 +3,9 @@ import filter from '../helpers/filter';
 import remove from '../helpers/remove';
 
 let additionalContent: ContentType = [];
-let additionalResponse: RedditResponseType = [];
+let additionalResponse: RedditResponseType;
 let remaining: ContentType = [];
-let response: RedditResponseType = [];
+let response: RedditResponseType;
 
 const getMore = async (
   appendElements: AppendType,
