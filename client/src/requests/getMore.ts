@@ -22,7 +22,7 @@ const getMore = async (
     if (app) {
       if (remaining.length > 0) {
         if (remaining.length < 3 && willContinue) {
-          console.log('i go here first lol');
+          console.log('i go here first lol', response);
           response = await continueRun(windowOwner);
           remaining = [...remaining, ...filter(response, tagType)];
         }
