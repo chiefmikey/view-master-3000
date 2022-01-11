@@ -11,7 +11,7 @@
     "tsc": "tsc"
   },
   "dependencies": {
-    "@aws-sdk/client-secrets-manager": "^3.45.0",
+    "@aws-sdk/client-secrets-manager": "^3.46.0",
     "airbnb-browser-shims": "^3.3.0",
     "axios": "^0.24.0",
     "dom-chef": "^5.0.0",
@@ -29,7 +29,7 @@
   "devDependencies": {
     "@babel/core": "^7.16.7",
     "@babel/plugin-transform-react-jsx": "^7.16.7",
-    "@babel/preset-env": "^7.16.7",
+    "@babel/preset-env": "^7.16.8",
     "@babel/preset-typescript": "^7.16.7",
     "@mikey-pro/style-guide": "^3.2.6",
     "@types/koa": "^2.13.4",
