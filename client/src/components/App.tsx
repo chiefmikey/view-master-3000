@@ -12,7 +12,7 @@ app?.addEventListener('click', () => {
   }
 });
 let willContinue = false;
-let response = { data: [] };
+let response: RedditResponseType = [];
 
 const App = async () => {
   try {
@@ -109,12 +109,13 @@ const App = async () => {
         tagType = 'img';
       }
     }
-    const content = filter(response.data, tagType);
+    console.log('imabout to be filtered', response);
+    const content = filter(response, tagType);
     if (content.length > 0) {
       if (app) {
         appendElements(
           content,
-          response.data,
+          response,
           windowOwner,
           app,
           willContinue,
