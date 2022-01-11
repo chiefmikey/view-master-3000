@@ -1,5 +1,3 @@
-import { Listing, Submission } from 'snoowrap';
-
 import continueRun from '../helpers/continueRun';
 import filter from '../helpers/filter';
 import remove from '../helpers/remove';
@@ -24,6 +22,7 @@ const getMore = async (
     if (app) {
       if (remaining.length > 0) {
         if (remaining.length < 3 && willContinue) {
+          console.log('i go here first lol');
           response = await continueRun(windowOwner);
           remaining = [...remaining, ...filter(response, tagType)];
         }
