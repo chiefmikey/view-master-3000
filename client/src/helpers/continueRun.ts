@@ -24,7 +24,7 @@ const continueRun = async (windowOwner: string[]) => {
     );
     responseIndex += 1;
   }
-  return response;
+  return response.data;
 };
 
 export default continueRun;
