@@ -37,6 +37,7 @@ const getMore = async (
           tagType,
         );
       } else if (response && response.fetchMore) {
+        console.log('iam fetchaching mooore');
         additionalResponse = await response.fetchMore({
           amount: 128,
           append: false,
