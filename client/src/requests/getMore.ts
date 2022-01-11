@@ -36,9 +36,8 @@ const getMore = async (
           willContinue,
           tagType,
         );
-      } else {
-        // eslint-disable-next-line @typescript-eslint/await-thenable
-        additionalResponse = await (response as Listing<Submission>).fetchMore({
+      } else if (response && response.fetchMore) {
+        additionalResponse = await response.fetchMore({
           amount: 128,
           append: false,
         });
