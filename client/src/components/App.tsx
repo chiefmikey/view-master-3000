@@ -110,12 +110,12 @@ const App = async () => {
       }
     }
     console.log('imabout to be filtered', response);
-    const content = filter(response, tagType);
+    const content = filter(response.data, tagType);
     if (content.length > 0) {
       if (app) {
         appendElements(
           content,
-          response,
+          response.data,
           windowOwner,
           app,
           willContinue,
