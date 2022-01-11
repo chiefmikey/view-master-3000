@@ -109,7 +109,6 @@ const App = async () => {
         tagType = 'img';
       }
     }
-    console.log(response);
     const content = filter(response.data, tagType);
     if (content.length > 0) {
       if (app) {
