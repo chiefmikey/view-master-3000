@@ -42,7 +42,7 @@ const getMore = async (
           'https://api.5105015032.com/auth/vm3000/more',
         );
 
-        additionalContent = filter(additionalResponse, tagType);
+        additionalContent = filter(additionalResponse.data, tagType);
         if (additionalContent.length > 3) {
           remove(app);
         } else if (willContinue) {
