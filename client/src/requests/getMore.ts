@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 import continueRun from '../helpers/continueRun';
 import filter from '../helpers/filter';
 import remove from '../helpers/remove';
@@ -35,12 +37,10 @@ const getMore = async (
           willContinue,
           tagType,
         );
-      } else if (response) {
-        console.log('iam fetchaching mooore', response);
-        additionalResponse = await response.fetchMore({
-          amount: 128,
-          append: false,
-        });
+      } else {
+        additionalResponse = await axios.get(
+          'https://api.5105015032.com/auth/vm3000/more',
+        );
 
         additionalContent = filter(additionalResponse, tagType);
         if (additionalContent.length > 3) {

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const responseFunctions = ['hot', 'rising', 'controversial', 'new'];
-let response: RedditResponseType = [];
+let response: { data: RedditResponseType } = { data: [] };
 let responseIndex = 0;
 const tops = ['hour', 'day', 'week', 'month', 'year', 'all'];
 let topIndex = 0;

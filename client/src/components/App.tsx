@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { h } from 'dom-chef';
+import { Submission } from 'snoowrap';
 
 import appendElements from '../helpers/append';
 import filter from '../helpers/filter';

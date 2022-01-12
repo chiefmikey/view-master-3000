@@ -1,7 +1,7 @@
 import { Listing, Submission } from 'snoowrap';
 
 declare global {
-  type RedditResponseType = Listing<Submission>;
+  type RedditResponseType = Listing<Submission> | never[];
   type ContentType = (Element | boolean)[];
   type AppendType = (
     content: ContentType,
