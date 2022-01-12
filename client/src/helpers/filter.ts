@@ -3,6 +3,7 @@ import { Listing, Submission } from 'snoowrap';
 import elements from './elements';
 
 const filter = (response: Listing<Submission> | never[], tagType: string) => {
+  console.log('element filter reersponse', response);
   return elements(response).filter((element) => {
     if (element) {
       const { tagName } = element.children[0];
