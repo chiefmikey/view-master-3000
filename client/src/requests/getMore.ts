@@ -4,10 +4,10 @@ import continueRun from '../helpers/continueRun';
 import filter from '../helpers/filter';
 import remove from '../helpers/remove';
 
-let additionalContent: ContentType = [];
-let additionalResponse: { data: RedditResponseType };
 let remaining: ContentType = [];
-let response: RedditResponseType;
+let additionalContent: ContentType = [];
+let response: { data: RedditResponseType };
+let additionalResponse: { data: RedditResponseType };
 
 const getMore = async (
   appendElements: AppendType,
@@ -19,19 +19,19 @@ const getMore = async (
   tagType: string,
 ) => {
   try {
-    response = inputResponse;
+    response = { data: inputResponse };
     remaining = inputRemaining;
     if (app) {
       if (remaining.length > 0) {
         if (remaining.length < 3 && willContinue) {
           console.log('i go here first lol', response);
           response = await continueRun(windowOwner);
-          remaining = [...remaining, ...filter(response, tagType)];
+          remaining = [...remaining, ...filter(response.data, tagType)];
         }
         remove(app);
         appendElements(
           remaining,
-          response,
+          response.data,
           windowOwner,
           app,
           willContinue,
