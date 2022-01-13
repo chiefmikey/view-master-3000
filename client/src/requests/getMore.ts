@@ -5,7 +5,7 @@ import filter from '../helpers/filter';
 import remove from '../helpers/remove';
 
 let additionalContent: ContentType = [];
-let additionalResponse: RedditResponseType;
+let additionalResponse: { data: RedditResponseType };
 let remaining: ContentType = [];
 let response: RedditResponseType;
 
@@ -49,12 +49,12 @@ const getMore = async (
           additionalResponse = await continueRun(windowOwner);
           additionalContent = [
             ...additionalContent,
-            ...filter(additionalResponse, tagType),
+            ...filter(additionalResponse.data, tagType),
           ];
         }
         appendElements(
           additionalContent,
-          additionalResponse,
+          additionalResponse.data,
           windowOwner,
           app,
           willContinue,

@@ -22,13 +22,13 @@ const continueRun = async (windowOwner: string[]) => {
       );
       responseIndex += 1;
     }
-    if (response.data) {
-      return response.data;
+    if (response) {
+      return response;
     }
-    return [];
+    return response;
   } catch (error) {
     console.log(error);
-    return [];
+    return response;
   }
 };
 
