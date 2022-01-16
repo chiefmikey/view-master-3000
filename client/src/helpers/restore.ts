@@ -1,13 +1,14 @@
 const restore = (app: Element | undefined, previousResponses: Element[]) => {
   const children = [];
+  let responses = previousResponses;
   for (
-    let index = previousResponses.length - 1;
-    index > previousResponses.length - 5;
+    let index = responses.length - 1;
+    index >= responses.length - 4;
     index -= 1
   ) {
-    if (previousResponses[index]) {
-      children.push(previousResponses[index]);
-      delete previousResponses[index];
+    if (responses[index]) {
+      children.push(responses[index]);
+      responses = responses.splice(index, 1);
     }
   }
   for (const child of children) {
@@ -15,7 +16,7 @@ const restore = (app: Element | undefined, previousResponses: Element[]) => {
       app.prepend(child);
     }
   }
-  return previousResponses;
+  return responses;
 };
 
 export default restore;
