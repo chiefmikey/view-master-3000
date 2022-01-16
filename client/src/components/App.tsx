@@ -110,7 +110,6 @@ const App = async () => {
         tagType = 'img';
       }
     }
-    console.log('imabout to be filtered', response);
     const content = filter(response.data, tagType);
     if (content.length > 0) {
       if (app) {
