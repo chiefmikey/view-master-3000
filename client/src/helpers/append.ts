@@ -24,6 +24,22 @@ const listener = (
           app,
           willContinue,
           tagType,
+          'down',
+        );
+      }
+    });
+    // eslint-disable-next-line @typescript-eslint/no-misused-promises
+    app.addEventListener('scroll', async () => {
+      if (app.scrollTop + app.clientHeight <= 0) {
+        await getMore(
+          appendElements,
+          response,
+          remaining,
+          windowOwner,
+          app,
+          willContinue,
+          tagType,
+          'up',
         );
       }
     });
