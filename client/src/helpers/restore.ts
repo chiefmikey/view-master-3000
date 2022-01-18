@@ -1,6 +1,6 @@
 const restore = (app: Element | undefined, previousResponses: Element[]) => {
   const children = [];
-  let responses = previousResponses;
+  const responses = previousResponses;
   for (
     let index = responses.length - 1;
     index >= responses.length - 4;
@@ -8,7 +8,7 @@ const restore = (app: Element | undefined, previousResponses: Element[]) => {
   ) {
     if (responses[index]) {
       children.push(responses[index]);
-      responses = responses.splice(index, 1);
+      responses.splice(index, 1);
     }
   }
   for (const child of children) {
