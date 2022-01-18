@@ -15,7 +15,6 @@ const listener = (
     activeListener = true;
     // eslint-disable-next-line @typescript-eslint/no-misused-promises
     app.addEventListener('scroll', async () => {
-      console.log(app.scrollTop);
       if (app.scrollTop + app.clientHeight >= app.scrollHeight) {
         await getMore(
           appendElements,
@@ -28,7 +27,6 @@ const listener = (
           'down',
         );
       } else if (app.scrollTop <= 0) {
-        console.log('wow');
         await getMore(
           appendElements,
           response,
