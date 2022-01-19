@@ -67,8 +67,10 @@ const getMore = async (
       }
     } else if (direction === 'up' && app) {
       previousResponses = restore(app, previousResponses);
-      const scrollDown = app.clientHeight * 0.25;
-      app?.scrollTo(0, scrollDown);
+      if (previousResponses.length > 0) {
+        const scrollDown = app.clientHeight * 0.25;
+        app?.scrollTo(0, scrollDown);
+      }
     }
   } catch (error) {
     console.log(error);
