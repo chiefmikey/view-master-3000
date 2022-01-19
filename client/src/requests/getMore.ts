@@ -3,6 +3,7 @@ import axios from 'axios';
 import continueRun from '../helpers/continueRun';
 import filter from '../helpers/filter';
 import remove from '../helpers/remove';
+import removeNew from '../helpers/removeNew';
 import restore from '../helpers/restore';
 
 let remaining: ContentType = [];
@@ -67,6 +68,8 @@ const getMore = async (
       }
     } else if (direction === 'up' && app && previousResponses.length > 0) {
       previousResponses = restore(app, previousResponses);
+      const removedContent = [...removeNew(app)];
+      additionalContent = [...removedContent.reverse(), ...additionalContent];
       const scrollDown = app.clientHeight * 0.25;
       app?.scrollTo(0, scrollDown);
     }
