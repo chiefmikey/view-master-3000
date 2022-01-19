@@ -65,12 +65,10 @@ const getMore = async (
           );
         }
       }
-    } else if (direction === 'up' && app) {
+    } else if (direction === 'up' && app && previousResponses.length > 0) {
       previousResponses = restore(app, previousResponses);
-      if (previousResponses.length > 0) {
-        const scrollDown = app.clientHeight * 0.25;
-        app?.scrollTo(0, scrollDown);
-      }
+      const scrollDown = app.clientHeight * 0.25;
+      app?.scrollTo(0, scrollDown);
     }
   } catch (error) {
     console.log(error);
