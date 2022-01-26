@@ -6,6 +6,7 @@ const usedContent: string[] = [];
 
 const elements = (response: Listing<Submission> | never[]) =>
   response.map((post) => {
+    console.log('POST TEST', post);
     if (!urls.includes(post.url)) {
       if (post.post_hint === 'image') {
         urls.push(post.url);
