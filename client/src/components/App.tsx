@@ -1,5 +1,6 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { h } from 'dom-chef';
+import React from 'react';
 import { Submission } from 'snoowrap';
 
 import appendElements from '../helpers/append';
@@ -13,7 +14,7 @@ app?.addEventListener('click', () => {
   }
 });
 let willContinue = false;
-let response: RedditResponseType = [];
+let response: AxiosResponse;
 
 const App = async () => {
   try {
@@ -110,24 +111,58 @@ const App = async () => {
         tagType = 'img';
       }
     }
-    const content = filter(response.data, tagType);
-    if (content.length > 0) {
-      if (app) {
-        appendElements(
-          content,
-          response.data,
-          windowOwner,
-          app,
-          willContinue,
-          tagType,
-        );
+    if (response && response.data) {
+      const content = filter(response.data, tagType);
+      if (content.length > 0) {
+        if (app) {
+          appendElements(
+            content,
+            response.data,
+            windowOwner,
+            app,
+            willContinue,
+            tagType,
+          );
+        }
+      } else {
+        app?.append(<div className="error">Not Found</div>);
       }
-    } else {
-      app?.append(<div className="error">Not Found</div>);
     }
   } catch (error) {
     console.log(error);
   }
+
+  const submit = (event) => {
+    if (event === 'window' || !event.key || event.key === 'Enter') {
+      if (event !== 'window') {
+        event.target.blur();
+      }
+      const history = 'push';
+    }
+  };
+
+  let placeholder = '[ User or Sub ]';
+
+  return (
+    <div className="home">
+      <div className="title">View-Master 3000</div>
+      <input
+        tabIndex={0}
+        className="search"
+        type="text"
+        placeholder={placeholder}
+        onFocus={() => {
+          placeholder = '';
+        }}
+        onBlur={() => {
+          placeholder = '[ User or Sub ]';
+        }}
+        onKeyDown={submit}
+        autoCorrect="off"
+        autoCapitalize="none"
+      />
+    </div>
+  );
 };
 
 export default App;
