@@ -4,6 +4,15 @@ import { Listing, Submission } from 'snoowrap';
 const urls: string[] = [];
 const usedContent: string[] = [];
 
+const getImagePreview = (post: Submission) => {
+  for (let index = 2; index >= 0; index -= 1) {
+    const result = post.preview.images[0].resolutions[index];
+    if (result && result.url) {
+      return result.url;
+    }
+  }
+};
+
 const elements = (response: Listing<Submission> | never[]) =>
   response.map((post) => {
     console.log('POST TEST', post);
@@ -20,7 +29,7 @@ const elements = (response: Listing<Submission> | never[]) =>
           >
             <img
               alt="Content Post"
-              src={post.preview.images[0].resolutions[2].url}
+              src={getImagePreview(post)}
               loading="lazy"
             />
           </a>
@@ -31,9 +40,10 @@ const elements = (response: Listing<Submission> | never[]) =>
         const height = 'height="100%"';
         const width = 'width="100%"';
         return (
-          <div
+          <a
             className="element"
             key={post.name}
+            href={post.url}
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
               __html: post.media.oembed.html
@@ -57,14 +67,14 @@ const elements = (response: Listing<Submission> | never[]) =>
         };
         if (preview.reddit_video_preview) {
           return (
-            <div className="element" key={post.name}>
+            <a className="element" key={post.name}> href={post.url}>
               <video autoPlay muted loop controls playsInline preload="none">
                 <source
                   src={preview.reddit_video_preview.fallback_url}
                   type="video/mp4"
                 />
               </video>
-            </div>
+            </a>
           );
         }
         if (!usedContent.includes(post.url)) {
@@ -79,7 +89,7 @@ const elements = (response: Listing<Submission> | never[]) =>
             >
               <img
                 alt="Content Post"
-                src={post.preview.images[0].resolutions[2].url}
+                src={getImagePreview(post)}
                 loading="lazy"
               />
             </a>
