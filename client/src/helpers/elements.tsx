@@ -23,7 +23,7 @@ const elements = (response: Listing<Submission> | never[]) =>
           <a
             className="element"
             key={post.name}
-            href={post.url}
+            href={`https://reddit.com/${post.permalink}`}
             target="_blank"
             rel="noreferrer"
           >
@@ -43,7 +43,7 @@ const elements = (response: Listing<Submission> | never[]) =>
           <a
             className="element"
             key={post.name}
-            href={post.url}
+            href={`https://reddit.com/${post.permalink}`}
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
               __html: post.media.oembed.html
@@ -67,7 +67,11 @@ const elements = (response: Listing<Submission> | never[]) =>
         };
         if (preview.reddit_video_preview) {
           return (
-            <a className="element" key={post.name} href={post.url}>
+            <a
+              className="element"
+              key={post.name}
+              href={`https://reddit.com/${post.permalink}`}
+            >
               <video autoPlay muted loop controls playsInline preload="none">
                 <source
                   src={preview.reddit_video_preview.fallback_url}
@@ -83,7 +87,7 @@ const elements = (response: Listing<Submission> | never[]) =>
             <a
               className="element"
               key={post.name}
-              href={post.url}
+              href={`https://reddit.com/${post.permalink}`}
               target="_blank"
               rel="noreferrer"
             >
