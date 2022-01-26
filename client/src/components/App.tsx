@@ -16,6 +16,16 @@ app?.addEventListener('click', () => {
 let willContinue = false;
 let response: AxiosResponse;
 
+let placeholder = '[ User or Sub ]';
+
+const submit = (event) => {
+  if (event.key === 'Enter') {
+    event.target.blur();
+    event.target.value = '';
+  }
+  const history = 'push';
+};
+
 const App = async () => {
   try {
     const windowOwner = window.location.pathname.split('/').slice(1);
@@ -132,17 +142,6 @@ const App = async () => {
     console.log(error);
   }
 
-  const submit = (event) => {
-    if (event === 'window' || !event.key || event.key === 'Enter') {
-      if (event !== 'window') {
-        event.target.blur();
-      }
-      const history = 'push';
-    }
-  };
-
-  let placeholder = '[ User or Sub ]';
-
   return (
     <div className="home">
       <div className="title">View-Master 3000</div>
@@ -155,7 +154,7 @@ const App = async () => {
           placeholder = '';
         }}
         onBlur={() => {
-          placeholder = '[ User or Sub ]';
+          placeholder = '';
         }}
         onKeyDown={submit}
         autoCorrect="off"
