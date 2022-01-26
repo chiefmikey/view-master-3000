@@ -67,7 +67,7 @@ const elements = (response: Listing<Submission> | never[]) =>
         };
         if (preview.reddit_video_preview) {
           return (
-            <a className="element" key={post.name}> href={post.url}>
+            <a className="element" key={post.name} href={post.url}>
               <video autoPlay muted loop controls playsInline preload="none">
                 <source
                   src={preview.reddit_video_preview.fallback_url}
