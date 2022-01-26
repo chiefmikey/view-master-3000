@@ -18,7 +18,11 @@ const elements = (response: Listing<Submission> | never[]) =>
             target="_blank"
             rel="noreferrer"
           >
-            <img alt="Content Post" src={post.url} loading="lazy" />
+            <img
+              alt="Content Post"
+              src={post.preview.images[0].resolutions[2].url}
+              loading="lazy"
+            />
           </a>
         );
       }
@@ -63,8 +67,8 @@ const elements = (response: Listing<Submission> | never[]) =>
             </div>
           );
         }
-        if (!usedContent.includes(post.preview.images[0].source.url)) {
-          usedContent.push(post.preview.images[0].source.url);
+        if (!usedContent.includes(post.url)) {
+          usedContent.push(post.url);
           return (
             <a
               className="element"
@@ -75,7 +79,7 @@ const elements = (response: Listing<Submission> | never[]) =>
             >
               <img
                 alt="Content Post"
-                src={post.preview.images[0].source.url}
+                src={post.preview.images[0].resolutions[2].url}
                 loading="lazy"
               />
             </a>
