@@ -93,7 +93,7 @@ const elements = (response: Listing<Submission> | never[]) =>
               key={post.name}
               onClick={(event) => mouseClick(event, post.url)}
             >
-              <video autoPlay muted loop controls playsInline preload="none">
+              <video muted autoPlay loop controls playsInline>
                 <source
                   src={preview.reddit_video_preview.fallback_url}
                   type="video/mp4"
