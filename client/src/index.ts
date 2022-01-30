@@ -4,6 +4,4 @@ import 'airbnb-browser-shims';
 
 import App from './components/App';
 
-const app = document.querySelector('.app');
-
-app?.append(await App());
+await App();
