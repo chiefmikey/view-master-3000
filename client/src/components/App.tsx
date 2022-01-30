@@ -1,7 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
 import { h } from 'dom-chef';
-import React from 'react';
-import { Submission } from 'snoowrap';
 
 import appendElements from '../helpers/append';
 import filter from '../helpers/filter';
