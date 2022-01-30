@@ -65,20 +65,23 @@ const elements = (response: Listing<Submission> | never[]) =>
             className="element"
             key={post.name}
             onClick={(event) => mouseClick(event, post.url)}
-            // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{
-              __html: post.media.oembed.html
-                .replace('style="position:absolute;"', 'loading="lazy"')
-                .replace('width="356"', width)
-                .replace('width="600"', width)
-                .replace('width="576"', width)
-                .replace('height="200"', height)
-                .replace('height="338"', height)
-                .replace('height="400"', height)
-                .replace('height="1024"', height)
-                .replace('height="1067"', height),
-            }}
-          ></div>
+          >
+            <div
+              // eslint-disable-next-line react/no-danger
+              dangerouslySetInnerHTML={{
+                __html: post.media.oembed.html
+                  .replace('style="position:absolute;"', 'loading="lazy"')
+                  .replace('width="356"', width)
+                  .replace('width="600"', width)
+                  .replace('width="576"', width)
+                  .replace('height="200"', height)
+                  .replace('height="338"', height)
+                  .replace('height="400"', height)
+                  .replace('height="1024"', height)
+                  .replace('height="1067"', height),
+              }}
+            ></div>
+          </div>
         );
       }
       if (post.post_hint === 'link') {
