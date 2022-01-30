@@ -136,30 +136,30 @@ const App = async () => {
         app?.append(<div className="error">Not Found</div>);
       }
     }
+
+    return windowOwner.length === 0 ? (
+      <div className="home">
+        <div className="title">View-Master 3000</div>
+        <input
+          tabIndex={0}
+          className="search"
+          type="text"
+          placeholder={placeholder}
+          onFocus={() => {
+            placeholder = '';
+          }}
+          onBlur={() => {
+            placeholder = '';
+          }}
+          onKeyDown={submit}
+          autoCorrect="off"
+          autoCapitalize="none"
+        />
+      </div>
+    ) : undefined;
   } catch (error) {
     console.log(error);
   }
-
-  return (
-    <div className="home">
-      <div className="title">View-Master 3000</div>
-      <input
-        tabIndex={0}
-        className="search"
-        type="text"
-        placeholder={placeholder}
-        onFocus={() => {
-          placeholder = '';
-        }}
-        onBlur={() => {
-          placeholder = '';
-        }}
-        onKeyDown={submit}
-        autoCorrect="off"
-        autoCapitalize="none"
-      />
-    </div>
-  );
 };
 
 export default App;
