@@ -67,6 +67,7 @@ const elements = (response: Listing<Submission> | never[]) =>
             onClick={(event) => mouseClick(event, post.url)}
           >
             <div
+              className="iframe-element"
               // eslint-disable-next-line react/no-danger
               dangerouslySetInnerHTML={{
                 __html: post.media.oembed.html
