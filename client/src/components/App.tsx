@@ -137,8 +137,8 @@ const App = async () => {
       }
     }
 
-    return (
-      windowOwner.length === 0 && (
+    if (!windowOwner[0]) {
+      return (
         <div className="home">
           <div className="title">View-Master 3000</div>
           <input
@@ -157,8 +157,8 @@ const App = async () => {
             autoCapitalize="none"
           />
         </div>
-      )
-    );
+      );
+    }
   } catch (error) {
     console.log(error);
   }
