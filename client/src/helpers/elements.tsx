@@ -13,8 +13,18 @@ const getImagePreview = (post: Submission) => {
   }
 };
 
-const rightClick = (event: MouseEvent) => {
+const mouseClick = (
+  event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+  contentUrl: string,
+  redditUrl: string,
+) => {
   event.preventDefault();
+  if (event.button === 0) {
+    window.open(contentUrl, '_blank');
+  }
+  if (event.button === 2) {
+    window.open(redditUrl, '_blank');
+  }
 };
 
 const elements = (response: Listing<Submission> | never[]) =>
@@ -23,19 +33,23 @@ const elements = (response: Listing<Submission> | never[]) =>
       if (post.post_hint === 'image') {
         urls.push(post.url);
         return (
-          <a
+          <div
             className="element"
             key={post.name}
-            href={`https://www.reddit.com/${post.permalink}`}
-            target="_blank"
-            rel="noreferrer"
+            onClick={(event) =>
+              mouseClick(
+                event,
+                post.url,
+                `https://www.reddit.com/${post.permalink}`,
+              )
+            }
           >
             <img
               alt="Content Post"
               src={getImagePreview(post)}
               loading="lazy"
             />
-          </a>
+          </div>
         );
       }
       if (post.media?.oembed?.html && post.post_hint === 'rich:video') {
@@ -43,12 +57,16 @@ const elements = (response: Listing<Submission> | never[]) =>
         const height = 'height="100%"';
         const width = 'width="100%"';
         return (
-          <a
+          <div
             className="element"
             key={post.name}
-            href={`https://www.reddit.com/${post.permalink}`}
-            target="_blank"
-            rel="noreferrer"
+            onClick={(event) =>
+              mouseClick(
+                event,
+                post.url,
+                `https://www.reddit.com/${post.permalink}`,
+              )
+            }
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
               __html: post.media.oembed.html
@@ -62,7 +80,7 @@ const elements = (response: Listing<Submission> | never[]) =>
                 .replace('height="1024"', height)
                 .replace('height="1067"', height),
             }}
-          />
+          ></div>
         );
       }
       if (post.post_hint === 'link') {
@@ -72,12 +90,16 @@ const elements = (response: Listing<Submission> | never[]) =>
         };
         if (preview.reddit_video_preview) {
           return (
-            <a
+            <div
               className="element"
               key={post.name}
-              href={`https://www.reddit.com/${post.permalink}`}
-              target="_blank"
-              rel="noreferrer"
+              onClick={(event) =>
+                mouseClick(
+                  event,
+                  post.url,
+                  `https://www.reddit.com/${post.permalink}`,
+                )
+              }
             >
               <video autoPlay muted loop controls playsInline preload="none">
                 <source
@@ -85,25 +107,29 @@ const elements = (response: Listing<Submission> | never[]) =>
                   type="video/mp4"
                 />
               </video>
-            </a>
+            </div>
           );
         }
         if (!usedContent.includes(post.url)) {
           usedContent.push(post.url);
           return (
-            <a
+            <div
               className="element"
               key={post.name}
-              href={`https://www.reddit.com/${post.permalink}`}
-              target="_blank"
-              rel="noreferrer"
+              onClick={(event) =>
+                mouseClick(
+                  event,
+                  post.url,
+                  `https://www.reddit.com/${post.permalink}`,
+                )
+              }
             >
               <img
                 alt="Content Post"
                 src={getImagePreview(post)}
                 loading="lazy"
               />
-            </a>
+            </div>
           );
         }
       }
