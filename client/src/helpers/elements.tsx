@@ -29,7 +29,6 @@ document.addEventListener(
 const mouseClick = (
   event: React.MouseEvent<HTMLDivElement, MouseEvent>,
   contentUrl: string,
-  redditUrl: string,
 ) => {
   event.preventDefault();
   if (event.buttons === 0) {
@@ -47,7 +46,7 @@ const elements = (response: Listing<Submission> | never[]) =>
           <div
             className="element"
             key={post.name}
-            onClick={(event) => mouseClick(event, post.url, redditUrl)}
+            onClick={(event) => mouseClick(event, post.url)}
           >
             <img
               alt="Content Post"
@@ -65,7 +64,7 @@ const elements = (response: Listing<Submission> | never[]) =>
           <div
             className="element"
             key={post.name}
-            onClick={(event) => mouseClick(event, post.url, redditUrl)}
+            onClick={(event) => mouseClick(event, post.url)}
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
               __html: post.media.oembed.html
@@ -92,7 +91,7 @@ const elements = (response: Listing<Submission> | never[]) =>
             <div
               className="element"
               key={post.name}
-              onClick={(event) => mouseClick(event, post.url, redditUrl)}
+              onClick={(event) => mouseClick(event, post.url)}
             >
               <video autoPlay muted loop controls playsInline preload="none">
                 <source
@@ -109,7 +108,7 @@ const elements = (response: Listing<Submission> | never[]) =>
             <div
               className="element"
               key={post.name}
-              onClick={(event) => mouseClick(event, post.url, redditUrl)}
+              onClick={(event) => mouseClick(event, post.url)}
             >
               <img
                 alt="Content Post"
