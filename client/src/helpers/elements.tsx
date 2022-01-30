@@ -13,9 +13,12 @@ const getImagePreview = (post: Submission) => {
   }
 };
 
+const rightClick = (event: MouseEvent) => {
+  event.preventDefault();
+};
+
 const elements = (response: Listing<Submission> | never[]) =>
   response.map((post) => {
-    console.log('POST TEST', post);
     if (!urls.includes(post.url)) {
       if (post.post_hint === 'image') {
         urls.push(post.url);
@@ -44,6 +47,8 @@ const elements = (response: Listing<Submission> | never[]) =>
             className="element"
             key={post.name}
             href={`https://www.reddit.com/${post.permalink}`}
+            target="_blank"
+            rel="noreferrer"
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
               __html: post.media.oembed.html
@@ -71,6 +76,8 @@ const elements = (response: Listing<Submission> | never[]) =>
               className="element"
               key={post.name}
               href={`https://www.reddit.com/${post.permalink}`}
+              target="_blank"
+              rel="noreferrer"
             >
               <video autoPlay muted loop controls playsInline preload="none">
                 <source
