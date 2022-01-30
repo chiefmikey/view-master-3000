@@ -19,10 +19,10 @@ const mouseClick = (
   redditUrl: string,
 ) => {
   event.preventDefault();
-  if (event.button === 0) {
+  if (event.buttons === 0) {
     window.open(contentUrl, '_blank');
   }
-  if (event.button === 2) {
+  if (event.buttons === 2) {
     window.open(redditUrl, '_blank');
   }
 };
