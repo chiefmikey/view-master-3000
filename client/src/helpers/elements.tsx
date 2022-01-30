@@ -20,9 +20,7 @@ document.addEventListener(
   (event) => {
     event.preventDefault();
     if (redditUrl) {
-      const handle = window.open(redditUrl, '_blank');
-      handle?.blur();
-      window.focus();
+      window.open(redditUrl, '_blank')?.focus();
     }
   },
   false,
@@ -35,9 +33,7 @@ const mouseClick = (
 ) => {
   event.preventDefault();
   if (event.buttons === 0) {
-    const handle = window.open(contentUrl, '_blank');
-    handle?.blur();
-    window.focus();
+    window.open(contentUrl, '_blank')?.focus();
   }
 };
 
