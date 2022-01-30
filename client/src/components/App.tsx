@@ -4,6 +4,8 @@ import { h } from 'dom-chef';
 import appendElements from '../helpers/append';
 import filter from '../helpers/filter';
 
+import Search from './Search';
+
 const app = document.querySelector('.app');
 app?.addEventListener('click', () => {
   for (const element of document.querySelectorAll('video')) {
@@ -13,16 +15,6 @@ app?.addEventListener('click', () => {
 });
 let willContinue = false;
 let response: AxiosResponse;
-
-let placeholder = '[ User or Sub ]';
-
-const submit = (event) => {
-  if (event.key === 'Enter') {
-    event.target.blur();
-    event.target.value = '';
-  }
-  const history = 'push';
-};
 
 const App = async () => {
   try {
@@ -138,26 +130,7 @@ const App = async () => {
     }
 
     if (!windowOwner[0]) {
-      return (
-        <div className="home">
-          <div className="title">View-Master 3000</div>
-          <input
-            tabIndex={0}
-            className="search"
-            type="text"
-            placeholder={placeholder}
-            onFocus={() => {
-              placeholder = '';
-            }}
-            onBlur={() => {
-              placeholder = '';
-            }}
-            onKeyDown={submit}
-            autoCorrect="off"
-            autoCapitalize="none"
-          />
-        </div>
-      );
+      app?.append(<Search />);
     }
   } catch (error) {
     console.log(error);
