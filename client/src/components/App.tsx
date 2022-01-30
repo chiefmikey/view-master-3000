@@ -11,6 +11,13 @@ app?.addEventListener('click', () => {
     element.play();
   }
 });
+document.addEventListener(
+  'contextmenu',
+  (event) => {
+    event.preventDefault();
+  },
+  false,
+);
 let willContinue = false;
 let response: AxiosResponse;
 
