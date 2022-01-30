@@ -13,6 +13,20 @@ const getImagePreview = (post: Submission) => {
   }
 };
 
+let redditUrl: string;
+
+document.addEventListener(
+  'contextmenu',
+  (event) => {
+    event.preventDefault();
+    if (redditUrl) {
+      window.open(redditUrl, '_blank');
+      window.focus();
+    }
+  },
+  false,
+);
+
 const mouseClick = (
   event: React.MouseEvent<HTMLDivElement, MouseEvent>,
   contentUrl: string,
@@ -23,26 +37,20 @@ const mouseClick = (
     window.open(contentUrl, '_blank');
   }
   if (event.buttons === 2) {
-    window.open(redditUrl, '_blank');
   }
 };
 
 const elements = (response: Listing<Submission> | never[]) =>
   response.map((post) => {
     if (!urls.includes(post.url)) {
+      redditUrl = `https://www.reddit.com/${post.permalink}`;
       if (post.post_hint === 'image') {
         urls.push(post.url);
         return (
           <div
             className="element"
             key={post.name}
-            onClick={(event) =>
-              mouseClick(
-                event,
-                post.url,
-                `https://www.reddit.com/${post.permalink}`,
-              )
-            }
+            onClick={(event) => mouseClick(event, post.url, redditUrl)}
           >
             <img
               alt="Content Post"
@@ -60,13 +68,7 @@ const elements = (response: Listing<Submission> | never[]) =>
           <div
             className="element"
             key={post.name}
-            onClick={(event) =>
-              mouseClick(
-                event,
-                post.url,
-                `https://www.reddit.com/${post.permalink}`,
-              )
-            }
+            onClick={(event) => mouseClick(event, post.url, redditUrl)}
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
               __html: post.media.oembed.html
@@ -93,13 +95,7 @@ const elements = (response: Listing<Submission> | never[]) =>
             <div
               className="element"
               key={post.name}
-              onClick={(event) =>
-                mouseClick(
-                  event,
-                  post.url,
-                  `https://www.reddit.com/${post.permalink}`,
-                )
-              }
+              onClick={(event) => mouseClick(event, post.url, redditUrl)}
             >
               <video autoPlay muted loop controls playsInline preload="none">
                 <source
@@ -116,13 +112,7 @@ const elements = (response: Listing<Submission> | never[]) =>
             <div
               className="element"
               key={post.name}
-              onClick={(event) =>
-                mouseClick(
-                  event,
-                  post.url,
-                  `https://www.reddit.com/${post.permalink}`,
-                )
-              }
+              onClick={(event) => mouseClick(event, post.url, redditUrl)}
             >
               <img
                 alt="Content Post"
