@@ -9,6 +9,6 @@ declare global {
     windowOwner: string[],
     app: Element,
     willContinue: boolean,
-    tagType: string,
+    tagType: string[],
   ) => void;
 }

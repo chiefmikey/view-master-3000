@@ -19,7 +19,7 @@ const getMore = async (
   windowOwner: string[],
   app: Element | undefined,
   willContinue: boolean,
-  tagType: string,
+  tagType: string[],
   direction: string,
 ) => {
   try {

@@ -9,7 +9,7 @@ const listener = (
   windowOwner: string[],
   app: Element,
   willContinue: boolean,
-  tagType: string,
+  tagType: string[],
 ) => {
   if (app) {
     activeListener = true;

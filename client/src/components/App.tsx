@@ -23,10 +23,11 @@ const App = async () => {
     const subName = windowOwner[1];
     const filterType = windowOwner[2];
     const timespan = windowOwner[3];
-    let tagType = '';
+    let filterTag = '';
+    let tagType: string[] = [];
 
     if (subUser === 'u') {
-      tagType = windowOwner[2];
+      filterTag = windowOwner[2];
       response = await axios.get(
         'https://api.5105015032.com/auth/vm3000/user',
         {
@@ -36,7 +37,7 @@ const App = async () => {
     } else if (subUser === 'r') {
       switch (filterType) {
         case 'hot': {
-          tagType = windowOwner[3];
+          filterTag = windowOwner[3];
           response = await axios.get(
             'https://api.5105015032.com/auth/vm3000/hot',
             {
@@ -47,7 +48,7 @@ const App = async () => {
           break;
         }
         case 'rising': {
-          tagType = windowOwner[3];
+          filterTag = windowOwner[3];
           response = await axios.get(
             'https://api.5105015032.com/auth/vm3000/rising',
             {
@@ -58,7 +59,7 @@ const App = async () => {
           break;
         }
         case 'controversial': {
-          tagType = windowOwner[3];
+          filterTag = windowOwner[3];
           response = await axios.get(
             'https://api.5105015032.com/auth/vm3000/controversial',
             {
@@ -69,7 +70,7 @@ const App = async () => {
           break;
         }
         case 'new': {
-          tagType = windowOwner[3];
+          filterTag = windowOwner[3];
           response = await axios.get(
             'https://api.5105015032.com/auth/vm3000/new',
             {
@@ -80,7 +81,7 @@ const App = async () => {
           break;
         }
         case 'top': {
-          tagType = windowOwner[4];
+          filterTag = windowOwner[4];
           const time = timespan || 'all';
           response = await axios.get(
             'https://api.5105015032.com/auth/vm3000/top',
@@ -92,7 +93,7 @@ const App = async () => {
           break;
         }
         default: {
-          tagType = windowOwner[2];
+          filterTag = windowOwner[2];
           response = await axios.get(
             'https://api.5105015032.com/auth/vm3000/new',
             {
@@ -103,12 +104,12 @@ const App = async () => {
         }
       }
     }
-    if (tagType) {
-      if (tagType.toLowerCase() === 'video') {
-        tagType = 'iframe';
+    if (filterTag) {
+      if (filterTag.toLowerCase() === 'video') {
+        tagType = ['iframe', 'video'];
       }
-      if (tagType.toLowerCase() === 'image') {
-        tagType = 'img';
+      if (filterTag.toLowerCase() === 'image') {
+        tagType = ['img'];
       }
     }
     if (response && response.data) {
