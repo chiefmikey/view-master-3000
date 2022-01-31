@@ -24,7 +24,7 @@ const App = async () => {
     const filterType = windowOwner[2];
     const timespan = windowOwner[3];
     let filterTag = '';
-    let tagType: string[] = [];
+    let tagType: string[];
 
     if (subUser === 'u') {
       filterTag = windowOwner[2];
