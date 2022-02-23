@@ -5,7 +5,7 @@ const urls: string[] = [];
 const usedContent: string[] = [];
 
 const getImagePreview = (post: Submission) => {
-  for (let index = 2; index >= 0; index -= 1) {
+  for (let index = 5; index >= 0; index -= 1) {
     const result = post.preview.images[0].resolutions[index];
     if (result && result.url) {
       return result.url;
