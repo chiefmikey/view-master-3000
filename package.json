@@ -11,7 +11,7 @@
     "tsc": "tsc"
   },
   "dependencies": {
-    "@aws-sdk/client-secrets-manager": "^3.52.0",
+    "@aws-sdk/client-secrets-manager": "^3.53.0",
     "airbnb-browser-shims": "^3.3.0",
     "axios": "^0.26.0",
     "dom-chef": "^5.0.0",
@@ -38,7 +38,7 @@
     "@types/webpack": "^5.28.0",
     "babel-loader": "^8.2.3",
     "css-loader": "^6.6.0",
-    "eslint": "^8.9.0",
+    "eslint": "^8.10.0",
     "nodemon": "^2.0.15",
     "prettier": "^2.5.1",
     "style-loader": "^3.3.1",
