@@ -11,14 +11,14 @@
     "tsc": "tsc"
   },
   "dependencies": {
-    "@aws-sdk/client-secrets-manager": "^3.56.0",
+    "@aws-sdk/client-secrets-manager": "^3.58.0",
     "airbnb-browser-shims": "^3.3.0",
     "axios": "^0.26.1",
     "dom-chef": "^5.1.0",
     "koa": "^2.13.4",
     "koa-static": "^5.0.0",
     "querystring-es3": "^0.2.1",
-    "react": "^17.0.2",
+    "react": "^18.0.0",
     "react-cool-img": "^1.2.12",
     "snoowrap": "^1.23.0",
     "stream": "^0.0.2",
